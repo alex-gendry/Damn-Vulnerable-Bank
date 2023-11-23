@@ -41,9 +41,6 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Run build with Gradle Wrapper
-        run: ./gradlew build
-
 
       # Set up Fortify ScanCentral Client
       - name: Download Fortify Clients
@@ -55,6 +52,8 @@ jobs:
       - name: Install FCLI
         run: |
           wget -qO- https://github.com/fortify/fcli/releases/download/v2.0.0/fcli-linux.tgz | tar zxf -
+
+      - run: cd DamnVulnerableBank
 
       # Run SAST Scan
       - name: Fortify SAST Scan
@@ -73,7 +72,7 @@ jobs:
           ssc_ci_password:  ${{ secrets.FTFY_CI_PASSWORD }}
           sast_scan: true
           sast_client_auth_token: ${{ secrets.FTFY_SAST_CLIENT_TOKEN }}
-          sast_build_options: "-bf DamnVulnerableBank/build.gradle"
+          sast_build_options: ""
           security_gate_action: fail
           security_gate_filterset: New C&H
             #          summary_filterset: Critical & High
