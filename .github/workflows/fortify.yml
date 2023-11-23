@@ -41,6 +41,9 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
+      - name: Run build with Gradle Wrapper
+        run: ./gradlew build
+
 
       # Set up Fortify ScanCentral Client
       - name: Download Fortify Clients
