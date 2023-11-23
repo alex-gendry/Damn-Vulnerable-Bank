@@ -34,7 +34,9 @@ jobs:
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
       - name: Install zip
-        run: apt install zip -y
+        run: |
+          apt update
+          apt install zip -y
 
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
